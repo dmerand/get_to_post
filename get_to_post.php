@@ -1,11 +1,13 @@
 <?php
 
-$AUTHTOKEN = "1qaz2wsx3edc4rfv5tgb6yhn";
+//probably should put auth tokens into another file off-site :)
+$auth_tokens = array("1qaz2wsx3edc4rfv5tgb6yhn" => "Proof");
+$token = $_GET['token'];
 
-if ($_GET['token'] != $AUTHTOKEN) {
-  not_found();
-} else {
+if (array_key_exists($token, $auth_tokens)) {
   get_to_post();
+} else {
+  not_found();
 }
 
 //return a "NOT FOUND" header
@@ -26,6 +28,8 @@ function get_to_post() {
     foreach ($get_data as $key => $value ) {
       if ($key == "url") {
         $url = $value;
+      } elseif ($key == "token") {
+        //eat the token parameter
       } else {
         $post_data[$key] = $value;
       }
