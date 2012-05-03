@@ -1,7 +1,25 @@
 <?php
 
+/*
+ * get_to_post.php
+ * author: Donald Merand http://donaldmerand.com
+ * 
+ * converts GET requests to POST requests
+ * returns the result of the POST request
+ * is not concerned with being RESTfully sinful
+ *
+ * usage example:
+ * send an SMS to 617.867.5309 using textbelt
+ * (put it on yer webserver)
+ * http://yer-webserver/get_to_post.php?token=secret_string&url=http://textbelt.com/text&number=6178675309&message=hello
+ * the secret string is compared against $auth_tokens
+ */
+
 //probably should put auth tokens into another file off-site :)
-$auth_tokens = array("1qaz2wsx3edc4rfv5tgb6yhn" => "Proof");
+$auth_tokens = array(
+  "1qaz2wsx3edc" => "USER",
+  "fjkkknd92934" => "AWESOME" //etc
+);
 $token = $_GET['token'];
 
 if (array_key_exists($token, $auth_tokens)) {
